@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+// NPM MODULES
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+// COMPONENET IMPORTS
+import Form from './componenets/Form';
+
 import './App.css';
 
 function App() {
+
+  const [imageCatalogue, setImageCatalogue] = useState({})
+
+
+  useEffect(() => {
+    // a variable that holds your api key
+    const apikey = 'MJgCKPjSyoOXZOgkJICcFSelvi2-tT8rTRUhnBAAj2g';
+    axios({
+      url: "https://api.unsplash.com/search/photos",
+      method: 'GET',
+      responseType: 'json',
+      params: {
+        query: "",
+        client_id: apikey,
+        per_page: 30
+      }
+    }).then((results) => {
+      setImageCatalogue(results.data.results)
+    })
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form
+        images={imageCatalogue}
+      />
     </div>
   );
 }
