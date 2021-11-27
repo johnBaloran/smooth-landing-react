@@ -2,8 +2,10 @@
 import { useState } from "react";
 
 // COMPONENET IMPORTS
+import Header from "./componenets/Header";
 import Form from "./componenets/Form";
 import LandingPage from "./componenets/LandingPage";
+import Footer from "./componenets/Footer";
 
 function App() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -18,8 +20,10 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Form grabObject={grabObject} />
       <LandingPage formAnswers={formAnswers} />
+      <Footer />
     </div>
   );
 }

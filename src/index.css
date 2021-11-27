@@ -1,22 +1,80 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Space+Mono&family=Staatliches&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Alfa+Slab+One&family=Architects+Daughter&family=Bangers&family=Comic+Neue&family=Creepster&family=Epilogue&family=Noto+Serif+Display&family=Playfair+Display&family=Roboto&family=Satisfy&family=Staatliches&display=swap');
+
+/* stripping default styling */
+
+body,
+ul,
+h1,
+h2,
+h3,
+p,
+a,
+i{
+margin: 0;
+padding: 0;
+}
+
+li{
+list-style: none;
+}
+
+a{
+text-decoration: none;
+color: inherit;
+}
+
 
 .App {
   display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 90%;
 }
 
 img {
   max-width: 100%;
 }
+
+form {
+  border: 1px solid black;
+} 
+
+.fontSelection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.fontSelection label {
+  /* border: 1px solid black; */
+}
+
 input[type="checkbox"] {
   /* display: none; */
 }
+
+
 .inputs {
   display: flex;
   flex-direction: column;
 }
 
 .imageDiv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.imageContainer {
   width: 250px;
+  height: 250px;
+  overflow: hidden;
+  margin: 5px;
 }
 
 /* style landing page here */

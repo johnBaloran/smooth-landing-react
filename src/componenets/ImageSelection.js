@@ -6,7 +6,7 @@ const ImageSelection = ({ backgroundImageChangeHandler }) => {
   const [imageSelection, setImageSelection] = useState({});
 
   useEffect(() => {
-    const apikey = "5q5uAORY7EjGub7EtQCRVbF5fN39wHzDRL0huQkWVtg";
+    const apikey = "duinyirbtoWLiyWqJ47c46rMrUwPtTmIR87nVX0fobU";
     axios({
       url: "https://api.unsplash.com/search/photos",
       method: "GET",
@@ -14,7 +14,7 @@ const ImageSelection = ({ backgroundImageChangeHandler }) => {
       params: {
         query: imageSelection,
         client_id: apikey,
-        per_page: 30,
+        per_page: 12,
       },
     }).then((results) => {
       console.log(results.data.results);
@@ -39,24 +39,29 @@ const ImageSelection = ({ backgroundImageChangeHandler }) => {
           Pick one:
         </option>
         <option value="business">Business</option>
-        <option value="ketchup">Ketchup</option>
+        <option value="seasonal">Seasonal</option>
         <option value="creative">Creative</option>
+        <option value="gradient">Gradient</option>
+        <option value="technology">Technology</option>
+        <option value="landscapes">Landscapes</option>
       </select>
 
-      {imageCatalogue.map((image, index) => {
-        return (
-          <div onClick={backgroundImageChangeHandler} className="imageDiv">
-            <input
-              type="checkbox"
-              id={`image${index}`}
-              value={image.urls.regular}
-            />
-            <label htmlFor={`image${index}`}>
-              <img src={image.urls.regular} alt={image.description} />
-            </label>
-          </div>
-        );
-      })}
+      <ul className="imageDiv">
+        {imageCatalogue.map((image, index) => {
+          return (
+            <li className="imageContainer" onClick={backgroundImageChangeHandler}>
+              <input
+                type="checkbox"
+                id={`image${index}`}
+                value={image.urls.regular}
+              />
+              <label htmlFor={`image${index}`}>
+                <img src={image.urls.regular} alt={image.description} />
+              </label>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };

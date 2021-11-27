@@ -47,7 +47,7 @@ const Form = ({ grabObject }) => {
   console.log(userInput);
 
   return (
-    <form type="submit" onSubmit={handleSubmit}>
+    <form className="wrapper" type="submit" onSubmit={handleSubmit}>
       <label htmlFor="userFirstName">First Name</label>
       <input
         type="text"

@@ -15,7 +15,7 @@ const LandingPage = ({ formAnswers }) => {
   // style up the landing page! add divs and move it around etc.
   return (
     <section
-      className="landingPage"
+      className="landingPage wrapper"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         fontFamily: `${fonts}`,
