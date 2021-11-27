@@ -1,1 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Space+Mono&family=Staatliches&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Space+Mono&family=Staatliches&display=swap");
+
+.App {
+  display: flex;
+}
+
+img {
+  max-width: 100%;
+}
+input[type="checkbox"] {
+  /* display: none; */
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageDiv {
+  width: 250px;
+}
+
+/* style landing page here */
+.landingPage {
+  width: 50%;
+  height: 90vh;
+  /* background-image: url("https://images.unsplash.com/photo-1472476443507-c7a5948772fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzc0Nzh8MHwxfHNlYXJjaHwxfHxrZXRjaHVwfGVufDB8fHx8MTYzNzk4NDUwMA&ixlib=rb-1.2.1&q=80&w=1080"); */
+}

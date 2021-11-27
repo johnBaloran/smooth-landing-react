@@ -1,63 +1,93 @@
-import { useState, useEffect } from 'react';
+import { useState } from "react";
+import FontSelection from "./FontSelection";
 
-import ImageSelection from './ImageSelection';
+import ImageSelection from "./ImageSelection";
 
+const Form = ({ grabObject }) => {
+  const [userInput, setUserInput] = useState({
+    firstName: "",
+    lastName: "",
+    subtitle: "",
+    socialLink: "",
+    fonts: "",
+    backgroundImage: "",
+    color: "",
+  });
 
-const Form = () => {
-    const [userInput, setUserInput] = useState({
-        userName: "",
-        subtitle: "",
-        socialLink: "",
-        fonts: "",
-        backgroundImage: "",
-        color: "",
-    })
+  // a submit handler that whenever form is submitted grabs the userInput object and puts it inside grabObject() from the app component
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
 
-    const fonts = [
-        { name: "Roboto", fontStyle: "Roboto" },
-        { name: "Space Mono", fontStyle: "Space Mono" },
-        { name: "Staatliches", fontStyle: "Staatliches" }
-    ]
+    // function coming from App component
+    grabObject(userInput);
+  };
 
-    return (
-        <>
-            
-            <form>
-                <label htmlFor="userFirstName">First Name</label>
-                <input
-                    type="text"
-                    id="firstName"
-                    name="userName"
-                />
-                <label htmlFor="userLastName">Last Name</label>
-                <input
-                    type="text"
-                    id="lastName"
-                    name="userLastName"
-                />
-                <label htmlFor="subtitle">Heading</label>
-                <input
-                    type="text"
-                    id="subtitle"
-                    name="subtitle"
-                />
-                <label htmlFor="socialLinks">Social Links</label>
-                <input
-                    type="url"
-                    id="socialLinks"
-                    name="socialLinks"
-                />
-                <button>+ Add Link</button>
-                <h2>Choose your Font</h2>
-                {fonts.map((font) => {
-                    return(
-                        <label htmlFor="font"><h3 style={{ fontFamily: `${font.fontStyle}` }}>{font.name}</h3></label>
-                    )
-                })}
-            <ImageSelection />
-            </form>
-        </>
-    )
-}
+  // functions that grab each value from each input and collects it in the userInput object
+  const firstNameChangeHandler = (e) => {
+    setUserInput({ ...userInput, firstName: e.target.value });
+  };
+  const lastNameChangeHandler = (e) => {
+    setUserInput({ ...userInput, lastName: e.target.value });
+  };
+  const subtitleChangeHandler = (e) => {
+    setUserInput({ ...userInput, subtitle: e.target.value });
+  };
+  const socialLinksChangeHandler = (e) => {
+    setUserInput({ ...userInput, socialLink: e.target.value });
+  };
+  const backgroundImageChangeHandler = (e) => {
+    setUserInput({ ...userInput, backgroundImage: e.target.value });
+  };
+  const fontChangeHandler = (e) => {
+    console.log("clicked");
+    console.log(e.target.innerText);
+    setUserInput({ ...userInput, fonts: e.target.value });
+  };
+  console.log(userInput);
 
-export default Form
+  return (
+    <form type="submit" onSubmit={handleSubmit}>
+      <label htmlFor="userFirstName">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        name="userName"
+        onChange={firstNameChangeHandler}
+        value={userInput.firstName}
+      />
+      <label htmlFor="userLastName">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        name="userLastName"
+        onChange={lastNameChangeHandler}
+        value={userInput.lastName}
+      />
+      <label htmlFor="subtitle">Heading</label>
+      <input
+        type="text"
+        id="subtitle"
+        name="subtitle"
+        onChange={subtitleChangeHandler}
+        value={userInput.subtitle}
+      />
+      <label htmlFor="socialLinks">Social Links</label>
+      <input
+        type="url"
+        id="socialLinks"
+        name="socialLinks"
+        onChange={socialLinksChangeHandler}
+        value={userInput.socialLink}
+      />
+      {/* button can be deleted if we want to and just use enter to submit */}
+      <button type="submit">submit</button>
+      <FontSelection fontChangeHandler={fontChangeHandler} />
+      <ImageSelection
+        backgroundImageChangeHandler={backgroundImageChangeHandler}
+      />
+    </form>
+  );
+};
+
+export default Form;
