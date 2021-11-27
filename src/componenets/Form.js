@@ -17,6 +17,8 @@ const Form = ({images}) => {
         { name: "Staatliches", fontStyle: "Staatliches" }
     ]
 
+    console.log(images)
+    
     return (
         <form>
             <label htmlFor="userFirstName">First Name</label>
@@ -52,9 +54,6 @@ const Form = ({images}) => {
             })}
             <h2>Choose your Background Image</h2>
             <label>Select a Category for your Background Image</label>
-            <select>
-                <option value=""></option>
-            </select>
             {images.map((image) => {
                 return (
                     <div>

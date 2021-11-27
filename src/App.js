@@ -14,20 +14,20 @@ function App() {
 
   useEffect(() => {
     // a variable that holds your api key
-    const apikey = 'MJgCKPjSyoOXZOgkJICcFSelvi2-tT8rTRUhnBAAj2g';
+    const apikey = '5q5uAORY7EjGub7EtQCRVbF5fN39wHzDRL0huQkWVtg';
     axios({
       url: "https://api.unsplash.com/search/photos",
       method: 'GET',
       responseType: 'json',
       params: {
-        query: "",
+        query: "galaxy",
         client_id: apikey,
         per_page: 30
       }
     }).then((results) => {
       setImageCatalogue(results.data.results)
     })
-  })
+  }, [])
 
   return (
     <div className="App">
