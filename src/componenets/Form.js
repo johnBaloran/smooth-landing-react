@@ -47,46 +47,51 @@ const Form = ({ grabObject }) => {
   console.log(userInput);
 
   return (
-    <form className="wrapper" type="submit" onSubmit={handleSubmit}>
-      <label htmlFor="userFirstName">First Name</label>
-      <input
-        type="text"
-        id="firstName"
-        name="userName"
-        onChange={firstNameChangeHandler}
-        value={userInput.firstName}
-      />
-      <label htmlFor="userLastName">Last Name</label>
-      <input
-        type="text"
-        id="lastName"
-        name="userLastName"
-        onChange={lastNameChangeHandler}
-        value={userInput.lastName}
-      />
-      <label htmlFor="subtitle">Heading</label>
-      <input
-        type="text"
-        id="subtitle"
-        name="subtitle"
-        onChange={subtitleChangeHandler}
-        value={userInput.subtitle}
-      />
-      <label htmlFor="socialLinks">Social Links</label>
-      <input
-        type="url"
-        id="socialLinks"
-        name="socialLinks"
-        onChange={socialLinksChangeHandler}
-        value={userInput.socialLink}
-      />
-      {/* button can be deleted if we want to and just use enter to submit */}
-      <button type="submit">submit</button>
-      <FontSelection fontChangeHandler={fontChangeHandler} />
-      <ImageSelection
-        backgroundImageChangeHandler={backgroundImageChangeHandler}
-      />
-    </form>
+    <div className="wrapper">
+      <form type="submit" onSubmit={handleSubmit}>
+        <div className="formInputs">
+          <label htmlFor="userFirstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="userName"
+            onChange={firstNameChangeHandler}
+            value={userInput.firstName}
+          />
+          <label htmlFor="userLastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="userLastName"
+            onChange={lastNameChangeHandler}
+            value={userInput.lastName}
+          />
+          <label htmlFor="subtitle">Heading</label>
+          <input
+            type="text"
+            id="subtitle"
+            name="subtitle"
+            onChange={subtitleChangeHandler}
+            value={userInput.subtitle}
+          />
+          <label htmlFor="socialLinks">Social Links</label>
+          <input
+            type="url"
+            id="socialLinks"
+            name="socialLinks"
+            onChange={socialLinksChangeHandler}
+            value={userInput.socialLink}
+          />
+        </div>
+        {/* button can be deleted if we want to and just use enter to submit */}
+        
+        <FontSelection fontChangeHandler={fontChangeHandler} />
+        <ImageSelection
+          backgroundImageChangeHandler={backgroundImageChangeHandler}
+        />
+        <button type="submit">submit</button>
+      </form>
+    </div>
   );
 };
 
