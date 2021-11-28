@@ -31,20 +31,34 @@ color: inherit;
   display: flex;
   flex-direction: column;
   font-family: 'Lato', sans-serif;
+  background-color: #7672f7;
 }
 
-h1, h2 {
+
+header h1 {
   font-family: 'Fjalla One', sans-serif;
+  font-size: 60px;
+  padding-top: 10px;
+  letter-spacing: 1px;
 }
 
-h2 {
+h1 span {
+  border-bottom: 4px solid #e7605c;
+}
+
+header h2 {
+  font-family: 'Fjalla One', sans-serif;
   padding-top: 25px;
+}
+
+h3 {
+  padding-top: 10px;
 }
 
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
 
 }
 
@@ -54,12 +68,13 @@ img {
 }
 
 form {
-  border: 1px solid black;
+  border: 3px solid black;
   padding: 20px;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: white;
 }
 
 .formInputs {
@@ -99,6 +114,10 @@ input[name="subtitle"] {
   padding: 10px 0px;
 }
 
+.fontSelection h3 {
+  padding: 10px;
+}
+
 input[type="checkbox"] {
   /* display: none; */
 }
@@ -112,6 +131,10 @@ input[type="checkbox"] {
 
 select[name="photoSelection"] {
   width: 25%;
+}
+ 
+.backgroundLabel {
+  padding: 10px 0px;
 }
 
 .imageDiv {
@@ -131,11 +154,15 @@ select[name="photoSelection"] {
 
 button {
   margin: 0 auto;
+  padding: 10px 25px;
 }
 
 /* style landing page here */
 .landingPage {
-  width: 50%;
+  width: 80%;
   height: 90vh;
+  margin: 25px auto;
+  background-size: cover;
+  border: 3px solid black;
   /* background-image: url("https://images.unsplash.com/photo-1472476443507-c7a5948772fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzc0Nzh8MHwxfHNlYXJjaHwxfHxrZXRjaHVwfGVufDB8fHx8MTYzNzk4NDUwMA&ixlib=rb-1.2.1&q=80&w=1080"); */
 }

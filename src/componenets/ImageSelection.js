@@ -29,7 +29,7 @@ const ImageSelection = ({ backgroundImageChangeHandler }) => {
   return (
     <>
       <h2>Choose your Background Image</h2>
-      <label>Select a Category for your Background Image</label>
+      <label className="backgroundLabel">Select a Category for your Background Image</label>
       <select
         id="photoSelection"
         name="photoSelection"
