@@ -1,13 +1,16 @@
 // NPM MODULES
 import { useState } from "react";
+import {Routes, Route, Link} from 'react-router-dom'
 
 // COMPONENET IMPORTS
+import AppLandingPage from "./pages/AppLandingPage";
 import Header from "./componenets/Header";
-import Form from "./componenets/Form";
-import LandingPage from "./componenets/LandingPage";
+import MainSection from "./pages/MainSection";
+import PreviewPage from "./pages/PreviewPage";
 import Footer from "./componenets/Footer";
 
 function App() {
+  
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formAnswers, setFormAnswers] = useState({});
   // a function that can be passed down as a prop to grab object made in Form component
@@ -21,8 +24,19 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Form grabObject={grabObject} />
-      <LandingPage formAnswers={formAnswers} />
+      <main>
+          <Routes>
+            <Route path="/" element={<AppLandingPage />}/>
+            <Route
+              path="/main"
+              element={<MainSection
+                grabObject={grabObject}
+                formAnswers={formAnswers}
+              />}
+            />
+            <Route path="/preview" element={<PreviewPage formAnswers={formAnswers}/> }/>
+          </Routes>
+      </main>
       <Footer />
     </div>
   );

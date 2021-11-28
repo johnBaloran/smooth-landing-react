@@ -28,18 +28,19 @@ color: inherit;
 
 
 .App {
-  display: flex;
-  flex-direction: column;
   font-family: 'Lato', sans-serif;
-  background-color: #7672f7;
+  /* background-color: #7672f7; */
 }
 
+header {
+  background-color: #7672f7;
+}
 
 header h1 {
   font-family: 'Fjalla One', sans-serif;
   font-size: 60px;
   padding-top: 10px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 h1 span {
@@ -67,10 +68,49 @@ img {
   display: block;
 }
 
+main{
+  background-image: linear-gradient(#7672f7, #e7605c);
+}
+
+.mainSection{
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.appLandingPage {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.appLandingPage h2{
+  letter-spacing: 2px;
+}
+
+.logo{
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.appLandingPage p,
+.preview p,
+.editButton {
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: white;
+  padding: 10px 20px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
 form {
   border: 3px solid black;
   padding: 20px;
-  margin-top: 50px;
+  margin-right: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,28 +119,10 @@ form {
 
 .formInputs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  grid-template-columns: .5fr 2fr;
+  gap: 15px;
+  margin-bottom: 20px;
 }
-
-input[name="userName"] {
-  grid-column: 1 / 2;
-}
-
-input[name="userLastName"] {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-}
-
-label[for="userLastName"] {
-  grid-row: 1/2;
-  grid-column: 2/3;
-}
-
-input[name="subtitle"] {
-  grid-row: 4 / 5;
-}
-
 
 .fontSelection {
   display: grid;
@@ -122,7 +144,6 @@ input[type="checkbox"] {
   /* display: none; */
 }
 
-
 .inputs {
   display: flex;
   flex-direction: column;
@@ -132,15 +153,15 @@ input[type="checkbox"] {
 select[name="photoSelection"] {
   width: 25%;
 }
- 
+
 .backgroundLabel {
   padding: 10px 0px;
 }
 
 .imageDiv {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   gap: 5px;
 }
 
@@ -160,9 +181,46 @@ button {
 /* style landing page here */
 .landingPage {
   width: 80%;
-  height: 90vh;
-  margin: 25px auto;
+  height: 50vh;
   background-size: cover;
   border: 3px solid black;
+  /* THIS IS JUST PLACEHOLDER */
+  box-shadow: black 10px 10px; 
+  position: sticky;
+  top: 50px;
+  right: 10%;
   /* background-image: url("https://images.unsplash.com/photo-1472476443507-c7a5948772fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzc0Nzh8MHwxfHNlYXJjaHwxfHxrZXRjaHVwfGVufDB8fHx8MTYzNzk4NDUwMA&ixlib=rb-1.2.1&q=80&w=1080"); */
+}
+.preview p{
+text-align: center;
+margin: 0 auto;
+width: 20%;
+position: absolute;
+bottom: -65px;
+right: 0;
+}
+
+.editButton {
+  text-align: center;
+  margin: 20px auto;
+  width: 20%;
+}
+
+.previewContainer{
+  padding: 30px 0;
+}
+
+.previewPage{
+  margin: 0 auto;
+  width: 99%;
+  height: 100vh;
+  border: 3px solid black;
+  background-size: cover;
+}
+
+
+footer {
+  background-color: #e7605c;
+  text-align: center;
+  padding: 10px;
 }

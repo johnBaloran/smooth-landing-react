@@ -20,7 +20,7 @@ const Form = ({ grabObject }) => {
     console.log("submitted");
 
     // function coming from App component
-    grabObject(userInput);
+      grabObject(userInput);
   };
 
   // functions that grab each value from each input and collects it in the userInput object
@@ -47,7 +47,6 @@ const Form = ({ grabObject }) => {
   console.log(userInput);
 
   return (
-    <div className="wrapper">
       <form type="submit" onSubmit={handleSubmit}>
         <div className="formInputs">
           <label htmlFor="userFirstName">First Name</label>
@@ -91,7 +90,6 @@ const Form = ({ grabObject }) => {
         />
         <button type="submit">submit</button>
       </form>
-    </div>
   );
 };
 
