@@ -3,24 +3,37 @@ import React from "react";
 // you can put inside or outside component function, more readable outside
 const fonts = [
   { name: "Roboto", fontStyle: "Roboto" },
-  { name: "Space Mono", fontStyle: "Space Mono" },
   { name: "Staatliches", fontStyle: "Staatliches" },
+  { name: "Architects Daughter", fontStyle: "Architects Daughter" },
+  { name: "Alfa Slab One", fontStyle: "Alfa Slab One" },
+  { name: "Alegreya", fontStyle: "Alegreya" },
+  { name: "Bangers", fontStyle: "Bangers" },
+  { name: "Comic Neue", fontStyle: "Comic Neue" },
+  { name: "Creepster", fontStyle: "Creepster" },
+  { name: "Epilogue", fontStyle: "Epilogue" },
+  { name: "Noto Serif Display", fontStyle: "Noto Serif Display" },
+  { name: "Playfair Display", fontStyle: "Playfair Display" },
+  { name: "Satisfy", fontStyle: "Satisfy" },
+
+
 ];
 
 const FontSelection = ({ fontChangeHandler }) => {
   return (
     <>
       <h2>Choose your Font</h2>
-      {fonts.map((font, index) => {
-        return (
-          <div onClick={fontChangeHandler}>
-            <input type="checkbox" id={`font${index}`} value={font.fontStyle} />
-            <label htmlFor={`font${index}`}>
-              <h3 style={{ fontFamily: `${font.fontStyle}` }}>{font.name}</h3>
-            </label>
-          </div>
-        );
-      })}
+      <ul className="fontSelection">
+        {fonts.map((font, index) => {
+          return (
+            <li onClick={fontChangeHandler}>
+              <input type="checkbox" id={`font${index}`} value={font.fontStyle} />
+              <label htmlFor={`font${index}`}>
+                <h3 style={{ fontFamily: `${font.fontStyle}` }}>{font.name}</h3>
+              </label>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };
