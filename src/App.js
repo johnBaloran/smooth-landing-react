@@ -7,6 +7,7 @@ import AppLandingPage from "./pages/AppLandingPage";
 import Header from "./componenets/Header";
 import MainSection from "./pages/MainSection";
 import PreviewPage from "./pages/PreviewPage";
+import DisplayCode from "./pages/DisplayCode";
 import Footer from "./componenets/Footer";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/preview" element={<PreviewPage formAnswers={formAnswers}/> }/>
           </Routes>
       </main>
+      <DisplayCode formAnswers={formAnswers}/>
       <Footer />
     </div>
   );
