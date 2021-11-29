@@ -105,7 +105,8 @@ main{
 
 .appLandingPage p,
 .preview p,
-.editButton {
+.editButton,
+.generateCode p{
   border: 3px solid black;
   border-radius: 25px;
   background-color: white;
@@ -207,6 +208,15 @@ bottom: -65px;
 right: 0;
 }
 
+.generateCode p{
+  text-align: center;
+  margin: 0 auto;
+  width: 20%;
+  position: absolute;
+  bottom: -65px;
+  right: 175px;
+}
+
 .editButton {
   text-align: center;
   margin: 20px auto;
@@ -258,6 +268,19 @@ right: 0;
 .previewPage p{
   padding: 10px 0px;
   font-size: 2rem;
+}
+
+.displayContainter{
+  padding: 30px 0px;
+}
+
+.displayCodePage{
+  width: 80%;
+  background-color: white;
+  border: 3px solid black;
+  overflow: scroll;
+  margin: 0 auto;
+  padding: 10px 0px;
 }
 
 footer {

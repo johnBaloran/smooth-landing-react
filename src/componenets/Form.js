@@ -1,14 +1,17 @@
 import { useState } from "react";
 import FontSelection from "./FontSelection";
 
+
 import ImageSelection from "./ImageSelection";
 
-const Form = ({ grabObject }) => {
+const Form = ({ grabObject, socialIconHandler }) => {
   const [userInput, setUserInput] = useState({
     firstName: "",
     lastName: "",
     subtitle: "",
-    socialLink: "",
+    github: "",
+    linkedIn: "",
+    twitter: "",
     fonts: "",
     backgroundImage: "",
     color: "",
@@ -17,6 +20,7 @@ const Form = ({ grabObject }) => {
   // a submit handler that whenever form is submitted grabs the userInput object and puts it inside grabObject() from the app component
   const handleSubmit = (e) => {
     e.preventDefault();
+    socialIconHandler();
     console.log("submitted");
 
     // function coming from App component
@@ -33,8 +37,14 @@ const Form = ({ grabObject }) => {
   const subtitleChangeHandler = (e) => {
     setUserInput({ ...userInput, subtitle: e.target.value });
   };
-  const socialLinksChangeHandler = (e) => {
-    setUserInput({ ...userInput, socialLink: e.target.value });
+  const githubChangeHandler = (e) => {
+    setUserInput({ ...userInput, github: e.target.value });
+  };
+  const linkedInChangeHandler = (e) => {
+    setUserInput({ ...userInput, linkedIn: e.target.value });
+  };
+  const twitterChangeHandler = (e) => {
+    setUserInput({ ...userInput, twitter: e.target.value });
   };
   const backgroundImageChangeHandler = (e) => {
     setUserInput({ ...userInput, backgroundImage: e.target.value });
@@ -73,13 +83,29 @@ const Form = ({ grabObject }) => {
             onChange={subtitleChangeHandler}
             value={userInput.subtitle}
           />
-          <label htmlFor="socialLinks">Social Links</label>
+          <label htmlFor="github">Github</label>
           <input
             type="url"
-            id="socialLinks"
-            name="socialLinks"
-            onChange={socialLinksChangeHandler}
-            value={userInput.socialLink}
+            id="github"
+            name="github"
+            onChange={githubChangeHandler}
+            value={userInput.github}
+          />
+          <label htmlFor="linkedIn">LinkedIn</label>
+          <input
+            type="url"
+            id="linkedIn"
+            name="linkedIn"
+            onChange={linkedInChangeHandler}
+            value={userInput.linkedIn}
+          />
+          <label htmlFor="twitter">Twitter</label>
+          <input
+            type="url"
+            id="twitter"
+            name="twitter"
+            onChange={twitterChangeHandler}
+            value={userInput.twitter}
           />
         </div>
         {/* button can be deleted if we want to and just use enter to submit */}
