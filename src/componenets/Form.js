@@ -5,6 +5,7 @@ import FontSelection from "./FontSelection";
 import ImageSelection from "./ImageSelection";
 
 const Form = ({ grabObject, socialIconHandler }) => {
+  const [checkboxValues, setCheckboxValues] = useState({checked:{}});
   const [userInput, setUserInput] = useState({
     firstName: "",
     lastName: "",
@@ -14,7 +15,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
     twitter: "",
     fonts: "",
     backgroundImage: "",
-    color: "",
+    fontColor: "",
   });
 
   // a submit handler that whenever form is submitted grabs the userInput object and puts it inside grabObject() from the app component
@@ -46,16 +47,27 @@ const Form = ({ grabObject, socialIconHandler }) => {
   const twitterChangeHandler = (e) => {
     setUserInput({ ...userInput, twitter: e.target.value });
   };
+  const fontColorHandler = (e) => {
+    setUserInput({ ...userInput, fontColor: e.target.value });
+  }
   const backgroundImageChangeHandler = (e) => {
     setUserInput({ ...userInput, backgroundImage: e.target.value });
   };
   const fontChangeHandler = (e) => {
-    console.log("clicked");
-    console.log(e.target.innerText);
     setUserInput({ ...userInput, fonts: e.target.value });
   };
-  console.log(userInput);
+  const checkboxHandler = (index) => {
+    setCheckboxValues(previousState => ({
+      checked: {
+        ...previousState.checked,
+        [index]: !previousState.checked[index]
+      }
+    })) 
+  }
 
+  const { checked } = checkboxValues;
+    const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
+    const disabled = checkedCount == 1;
   return (
       <form type="submit" onSubmit={handleSubmit}>
         <div className="formInputs">
@@ -66,6 +78,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
             name="userName"
             onChange={firstNameChangeHandler}
             value={userInput.firstName}
+            required
           />
           <label htmlFor="userLastName">Last Name</label>
           <input
@@ -74,6 +87,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
             name="userLastName"
             onChange={lastNameChangeHandler}
             value={userInput.lastName}
+            required
           />
           <label htmlFor="subtitle">Heading</label>
           <input
@@ -107,12 +121,20 @@ const Form = ({ grabObject, socialIconHandler }) => {
             onChange={twitterChangeHandler}
             value={userInput.twitter}
           />
+          <label htmlFor="fontColor">Font Color</label>
+          <input 
+          type="color"
+          id="fontColor"
+          name="fontColor"
+          onChange={fontColorHandler}
+          value={userInput.fontColor}
+          />
         </div>
         {/* button can be deleted if we want to and just use enter to submit */}
         
-        <FontSelection fontChangeHandler={fontChangeHandler} />
+        <FontSelection fontChangeHandler={fontChangeHandler} checked={checked} disabled={disabled} checkboxHandler={checkboxHandler} />
         <ImageSelection
-          backgroundImageChangeHandler={backgroundImageChangeHandler}
+          backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checked} disabled={disabled} checkboxHandler={checkboxHandler}
         />
         <button type="submit">submit</button>
       </form>

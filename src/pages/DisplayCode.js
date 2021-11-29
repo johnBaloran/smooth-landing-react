@@ -11,7 +11,7 @@ const DisplayCode = ({ formAnswers }) => {
         github,
         fonts,
         backgroundImage,
-        color,
+        fontColor,
     } = formAnswers;
     console.log(formAnswers);
     return (

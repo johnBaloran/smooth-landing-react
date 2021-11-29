@@ -14,7 +14,7 @@ const LandingPage = ({ formAnswers, icons }) => {
     twitter,
     fonts,
     backgroundImage,
-    color,
+    fontColor,
   } = formAnswers;
   // style up the landing page! add divs and move it around etc.
   return (
@@ -24,6 +24,7 @@ const LandingPage = ({ formAnswers, icons }) => {
         style={{
           backgroundImage: `url(${backgroundImage})`,
           fontFamily: `${fonts}`,
+          color: fontColor
         }}
       >
         <h1>

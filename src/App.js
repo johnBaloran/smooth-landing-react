@@ -24,7 +24,7 @@ function App() {
   };
 
   const socialIconHandler = () => {
-    setSocialIcons(!socialIcons)
+    setSocialIcons(true)
   }
   console.log(formAnswers)
   return (
