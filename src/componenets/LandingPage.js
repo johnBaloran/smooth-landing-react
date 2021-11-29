@@ -31,7 +31,7 @@ const LandingPage = ({ formAnswers, icons }) => {
         </h1>
         <h2>{subtitle}</h2>
         {icons ? (
-          <div>
+          <div className="socialIcons">
             <a href={twitter}><i class="fab fa-twitter-square"></i></a>
             <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
             <a href={github}><i class="fab fa-github-square"></i></a>

@@ -283,6 +283,29 @@ right: 0;
   padding: 10px 0px;
 }
 
+i{
+  font-size: 50px;
+  padding: 25px 10px;
+}
+
+.socialIcons{
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.socialIconsPreview{
+  width: 25%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.socialIconsPreview i{
+  font-size: 75px;
+}
+
 footer {
   background-color: #e7605c;
   text-align: center;
