@@ -2,9 +2,11 @@ import React from 'react'
 
 function Footer() {
     return (
-        <div className="wrapper">
-            
-        </div>
+        <footer>
+            <div className="wrapper">
+                <p>Created at <a href="https://junocollege.com"> Juno College</a></p>
+            </div>
+        </footer>
     )
 }
 
