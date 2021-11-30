@@ -12,7 +12,7 @@ const PreviewPage = ({ formAnswers, icons }) => {
         github,
         fonts,
         backgroundImage,
-        color,
+        fontColor,
     } = formAnswers;
 
     return (
@@ -22,6 +22,7 @@ const PreviewPage = ({ formAnswers, icons }) => {
                 style={{
                     backgroundImage: `url(${backgroundImage})`,
                     fontFamily: `${fonts}`,
+                    color: `${fontColor}`
                 }}
             >
                 <h1>

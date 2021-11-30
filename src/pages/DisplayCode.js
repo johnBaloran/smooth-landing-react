@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const DisplayCode = ({ formAnswers }) => {
 
@@ -38,6 +39,7 @@ const DisplayCode = ({ formAnswers }) => {
                             justify-content: center;
                             align-items: center;
                             height: 100vh;
+                            color: ${fontColor};
                         }
                         .previewPage h1{
                             padding: 10px;
@@ -50,6 +52,7 @@ const DisplayCode = ({ formAnswers }) => {
                             padding: 10px 0px;
                             font-size: 2rem;
                         }
+
                     </style>
                 </head>
                 <body>
@@ -68,6 +71,9 @@ const DisplayCode = ({ formAnswers }) => {
                 `}
                 </pre>
             </section>
+            <Link to="/main">
+                <p className="editButton">Edit</p>
+            </Link>
         </div>
     )
 }
