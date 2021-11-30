@@ -1,21 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const PreviewPage = ({ formAnswers }) => {
-    
+const PreviewPage = ({ formAnswers, icons }) => {
+
     const {
         firstName,
         lastName,
         subtitle,
-        socialLink,
+        twitter,
+        linkedIn,
+        github,
         fonts,
         backgroundImage,
         color,
     } = formAnswers;
 
     return (
-        <div className="previewContainer">
-            <section
+        <section className="previewContainer">
+            <div
                 className="previewPage"
                 style={{
                     backgroundImage: `url(${backgroundImage})`,
@@ -26,12 +28,18 @@ const PreviewPage = ({ formAnswers }) => {
                     {firstName} {lastName}
                 </h1>
                 <h2>{subtitle}</h2>
-                <p>{socialLink}</p>
-            </section>
+                {icons ? (
+                    <div className="socialIconsPreview">
+                        <a href={twitter}><i class="fab fa-twitter-square"></i></a>
+                        <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
+                        <a href={github}><i class="fab fa-github-square"></i></a>
+                    </div>
+                ) : ""}
+            </div>
             <Link to="/main">
                 <p className="editButton">Edit</p>
             </Link>
-        </div>
+        </section>
     )
 }
 

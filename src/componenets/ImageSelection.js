@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const ImageSelection = ({ backgroundImageChangeHandler }) => {
+const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, checkboxHandler }) => {
   const [imageCatalogue, setImageCatalogue] = useState([]);
   const [imageSelection, setImageSelection] = useState({});
 
@@ -51,6 +51,7 @@ const ImageSelection = ({ backgroundImageChangeHandler }) => {
           return (
             <li className="imageContainer" onClick={backgroundImageChangeHandler}>
               <input
+                onChange={()=>checkboxHandler(index)} checked={checked[index] || false} disabled={!checked[index] && disabled}
                 type="checkbox"
                 id={`image${index}`}
                 value={image.urls.regular}
