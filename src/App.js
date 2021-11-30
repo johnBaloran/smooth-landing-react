@@ -1,6 +1,6 @@
 // NPM MODULES
 import { useState } from "react";
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 
 // COMPONENET IMPORTS
 import AppLandingPage from "./pages/AppLandingPage";
@@ -19,14 +19,15 @@ function App() {
   // change name to something more specific
   const grabObject = (object) => {
     setFormAnswers(object);
-    setFormSubmitted(true);
-    console.log("hello");
+    if (!formSubmitted) {
+      setFormSubmitted(true);
+    }
   };
 
   const socialIconHandler = () => {
     setSocialIcons(true)
   }
-  console.log(formAnswers)
+  
   return (
     <div className="App">
       <Header />
