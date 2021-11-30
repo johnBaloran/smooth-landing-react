@@ -5,7 +5,7 @@ import { useState } from "react";
 const LandingPage = ({ formAnswers, icons }) => {
   console.log(formAnswers);
   // destructuring our object to make it easier for us to reference 
-   const {
+  const {
     firstName,
     lastName,
     subtitle,
@@ -19,35 +19,39 @@ const LandingPage = ({ formAnswers, icons }) => {
   // style up the landing page! add divs and move it around etc.
   return (
     <>
-      <section
-        className="landingPage"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          fontFamily: `${fonts}`,
-          color: fontColor
-        }}
-      >
-        <h1>
-          {firstName} {lastName}
-        </h1>
-        <h2>{subtitle}</h2>
-        {icons ? (
-          <div className="socialIcons">
-            <a href={twitter}><i class="fab fa-twitter-square"></i></a>
-            <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
-            <a href={github}><i class="fab fa-github-square"></i></a>
-          </div> 
-        ) : "" }
-        <div className="preview">
-          <Link to="/preview">
-            <p>Preview</p>
-          </Link>
+      <section className="landingPage">
+        <div
+          className="landingScreen"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            fontFamily: `${fonts}`,
+            color: fontColor
+          }}
+        >
+          <h1>
+            {firstName} {lastName}
+          </h1>
+          <h2>{subtitle}</h2>
+          {icons ? (
+            <div className="socialIcons">
+              <a href={twitter}><i class="fab fa-twitter-square"></i></a>
+              <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
+              <a href={github}><i class="fab fa-github-square"></i></a>
+            </div> 
+          ) : "" }
         </div>
-        <div className="generateCode">
-          <Link to="/code">
-            <p>Generate Code</p>  
-          </Link>
-        </div>
+        <section className="previewButtons">
+          <div className="preview">
+            <Link to="/preview">
+              <p>Preview</p>
+            </Link>
+          </div>
+          <div className="generateCode">
+            <Link to="/code">
+              <p>Generate Code</p>  
+            </Link>
+          </div>
+        </section>
       </section>
     </>
   );

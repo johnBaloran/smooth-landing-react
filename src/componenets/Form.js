@@ -4,8 +4,16 @@ import FontSelection from "./FontSelection";
 
 import ImageSelection from "./ImageSelection";
 
+const checkboxValues = (values) => {
+  const { checked } = values;
+  const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
+  const disabled = checkedCount == 1;
+  return [checked, disabled]
+}
+
 const Form = ({ grabObject, socialIconHandler }) => {
-  const [checkboxValues, setCheckboxValues] = useState({checked:{}});
+  const [fontCheckboxValues, setFontCheckboxValues] = useState({ checked: {} });
+  const [imageCheckboxValues, setImageCheckboxValues] = useState({ checked: {} });
   const [userInput, setUserInput] = useState({
     firstName: "",
     lastName: "",
@@ -15,7 +23,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
     twitter: "",
     fonts: "",
     backgroundImage: "",
-    fontColor: "",
+    fontColor: "#161b25",
   });
 
   // a submit handler that whenever form is submitted grabs the userInput object and puts it inside grabObject() from the app component
@@ -56,18 +64,27 @@ const Form = ({ grabObject, socialIconHandler }) => {
   const fontChangeHandler = (e) => {
     setUserInput({ ...userInput, fonts: e.target.value });
   };
-  const checkboxHandler = (index) => {
-    setCheckboxValues(previousState => ({
+  const fontCheckboxHandler = (index) => {
+    setFontCheckboxValues(previousState => ({
       checked: {
         ...previousState.checked,
         [index]: !previousState.checked[index]
       }
     })) 
   }
+  const imageCheckboxHandler = (index) => {
+    setImageCheckboxValues(previousState => ({
+      checked: {
+        ...previousState.checked,
+        [index]: !previousState.checked[index]
+      }
+    }))
+  }
 
-  const { checked } = checkboxValues;
-    const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
-    const disabled = checkedCount == 1;
+  const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
+  const[checkedTwo, disabledTwo] = checkboxValues(imageCheckboxValues);
+
+  
   return (
       <form type="submit" onSubmit={handleSubmit}>
         <div className="formInputs">
@@ -96,6 +113,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
             name="subtitle"
             onChange={subtitleChangeHandler}
             value={userInput.subtitle}
+            required
           />
           <label htmlFor="github">Github</label>
           <input
@@ -104,6 +122,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
             name="github"
             onChange={githubChangeHandler}
             value={userInput.github}
+            required
           />
           <label htmlFor="linkedIn">LinkedIn</label>
           <input
@@ -112,6 +131,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
             name="linkedIn"
             onChange={linkedInChangeHandler}
             value={userInput.linkedIn}
+            required
           />
           <label htmlFor="twitter">Twitter</label>
           <input
@@ -120,6 +140,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
             name="twitter"
             onChange={twitterChangeHandler}
             value={userInput.twitter}
+            required
           />
           <label htmlFor="fontColor">Font Color</label>
           <input 
@@ -128,15 +149,16 @@ const Form = ({ grabObject, socialIconHandler }) => {
           name="fontColor"
           onChange={fontColorHandler}
           value={userInput.fontColor}
+          required
           />
         </div>
         {/* button can be deleted if we want to and just use enter to submit */}
         
-        <FontSelection fontChangeHandler={fontChangeHandler} checked={checked} disabled={disabled} checkboxHandler={checkboxHandler} />
+      <FontSelection fontChangeHandler={fontChangeHandler} checked={checkedOne} disabled={disabledOne} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}/>
         <ImageSelection
-          backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checked} disabled={disabled} checkboxHandler={checkboxHandler}
+        backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checkedTwo} disabled={disabledTwo} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}
         />
-        <button type="submit">submit</button>
+        <button type="submit">Submit</button>
       </form>
   );
 };

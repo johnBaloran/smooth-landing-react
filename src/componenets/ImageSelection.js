@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, checkboxHandler }) => {
+const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, imageCheckboxHandler }) => {
   const [imageCatalogue, setImageCatalogue] = useState([]);
   const [imageSelection, setImageSelection] = useState({});
 
@@ -13,6 +13,7 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, check
       responseType: "json",
       params: {
         query: imageSelection,
+        orientation: 'landscape',
         client_id: apikey,
         per_page: 12,
       },
@@ -48,13 +49,15 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, check
 
       <ul className="imageDiv">
         {imageCatalogue.map((image, index) => {
+          
           return (
             <li className="imageContainer" onClick={backgroundImageChangeHandler}>
               <input
-                onChange={()=>checkboxHandler(index)} checked={checked[index] || false} disabled={!checked[index] && disabled}
+                onChange={()=>imageCheckboxHandler(index)} checked={checked[index] || false} disabled={!checked[index] && disabled}
                 type="checkbox"
                 id={`image${index}`}
                 value={image.urls.regular}
+                required
               />
               <label htmlFor={`image${index}`}>
                 <img src={image.urls.regular} alt={image.description} />
