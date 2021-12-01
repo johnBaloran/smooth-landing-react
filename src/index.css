@@ -5,21 +5,13 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* GOOGLE FONTS */
+
 @import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Alfa+Slab+One&family=Architects+Daughter&family=Bangers&family=Comic+Neue&family=Creepster&family=Epilogue&family=Noto+Serif+Display&family=Playfair+Display&family=Roboto&family=Satisfy&family=Staatliches&display&family=Fjalla+One&display&family=Lato&display=swap');
 
-/* Header Font */
+/* STRIP BASE STYLE */
 
-
-/* stripping default styling */
-
-body,
-ul,
-h1,
-h2,
-h3,
-p,
-a,
-i{
+body, ul, h1, h2, h3, p, a, i{
 margin: 0;
 padding: 0;
 }
@@ -33,10 +25,10 @@ text-decoration: none;
 color: inherit;
 }
 
+/* END OF STRIP BASE STYLE */
 
 .App {
   font-family: 'Lato', sans-serif;
-  /* background-color: #7672f7; */
 }
 
 header {
