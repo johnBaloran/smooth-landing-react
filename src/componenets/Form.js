@@ -7,7 +7,7 @@ import ImageSelection from "./ImageSelection";
 const checkboxValues = (values) => {
   const { checked } = values;
   const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
-  const disabled = checkedCount == 1;
+  const disabled = checkedCount === 1;
   return [checked, disabled]
 }
 
