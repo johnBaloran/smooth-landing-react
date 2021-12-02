@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FontSelection from "./FontSelection";
-
+import firebase from "../firebase";
 
 import ImageSelection from "./ImageSelection";
 
@@ -11,7 +11,7 @@ const checkboxValues = (values) => {
   return [checked, disabled]
 }
 
-const Form = ({ grabObject, socialIconHandler }) => {
+const Form = ({ grabObject, socialIconHandler, enableButton }) => {
   const [fontCheckboxValues, setFontCheckboxValues] = useState({ checked: {} });
   const [imageCheckboxValues, setImageCheckboxValues] = useState({ checked: {} });
   const [userInput, setUserInput] = useState({
@@ -26,12 +26,32 @@ const Form = ({ grabObject, socialIconHandler }) => {
     fontColor: "#161b25",
   });
 
+  useEffect(() => {
+    // make a reference to our database
+    const dbRef = firebase.database().ref("landingPage");
+    // add event listener to watch for changes to our database
+    dbRef.on("value", (response) => {
+      // variable to store a new state
+      const data = response.val();
+      const newPage = [];
+      for (let property in data) {
+        newPage.push({ id: property, ...data[property] });
+      }
+      // update state with new state
+      setUserInput(newPage[0]);
+    });
+  }, []);
+
   // a submit handler that whenever form is submitted grabs the userInput object and puts it inside grabObject() from the app component
   const handleSubmit = (e) => {
     e.preventDefault();
     socialIconHandler();
     // function coming from App component
       grabObject(userInput);
+      enableButton()
+      const dbRef = firebase.database().ref("landingPage");
+      console.log(dbRef.child(userInput.id));
+      dbRef.child(userInput.id).update(userInput);
   };
 
   // functions that grab each value from each input and collects it in the userInput object
@@ -79,9 +99,24 @@ const Form = ({ grabObject, socialIconHandler }) => {
     }))
   }
 
+  const clearFormHandler = () => {
+    const dbRef = firebase.database().ref("landingPage");
+    dbRef.child(userInput.id).update({
+    firstName: "",
+    lastName: "",
+    subtitle: "",
+    github: "",
+    linkedIn: "",
+    twitter: "",
+    fonts: "",
+    backgroundImage: "",
+    fontColor: "#161B25",
+    id: "",
+  });
+  }
+
   const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
   const[checkedTwo, disabledTwo] = checkboxValues(imageCheckboxValues);
-
   
   return (
       <form type="submit" onSubmit={handleSubmit}>
@@ -156,7 +191,10 @@ const Form = ({ grabObject, socialIconHandler }) => {
         <ImageSelection
         backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checkedTwo} disabled={disabledTwo} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}
         />
-        <button type="submit">Submit</button>
+        <div className="formButtons">
+          <button onClick={clearFormHandler} type="button">Clear Form</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
   );
 };

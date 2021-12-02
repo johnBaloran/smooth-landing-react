@@ -5,21 +5,13 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* GOOGLE FONTS */
+
 @import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Alfa+Slab+One&family=Architects+Daughter&family=Bangers&family=Comic+Neue&family=Creepster&family=Epilogue&family=Noto+Serif+Display&family=Playfair+Display&family=Roboto&family=Satisfy&family=Staatliches&display&family=Fjalla+One&display&family=Lato&display=swap');
 
-/* Header Font */
+/* STRIP BASE STYLE */
 
-
-/* stripping default styling */
-
-body,
-ul,
-h1,
-h2,
-h3,
-p,
-a,
-i{
+body, ul, h1, h2, h3, p, a, i{
 margin: 0;
 padding: 0;
 }
@@ -33,10 +25,10 @@ text-decoration: none;
 color: inherit;
 }
 
+/* END OF STRIP BASE STYLE */
 
 .App {
   font-family: 'Lato', sans-serif;
-  /* background-color: #7672f7; */
 }
 
 header {
@@ -107,16 +99,17 @@ main{
 .preview p,
 .editButton,
 .generateCode p{
-  border: 3px solid black;
+  border: 3px solid #161B25;
   border-radius: 25px;
   background-color: white;
   padding: 10px 20px;
   margin-top: 10px;
   text-transform: uppercase;
+
 }
 
 form {
-  border: 3px solid black;
+  border: 3px solid #161B25;
   padding: 20px;
   margin-right: 50px;
   display: flex;
@@ -142,7 +135,6 @@ form {
 }
 
 .fontSelection label {
-  /* border: 1px solid black; */
   padding: 10px 0px;
 }
 
@@ -157,15 +149,14 @@ input[type="checkbox"] {
 
 input:checked + label h3,
 input:focus + label h3{
-  border: 3px solid black;
+  border: 3px solid #161B25;
   position: absolute;
   width: calc(130px - 6px);
-
 }
 
 input:checked + label img,
 input:focus + label img{
-  border: 3px solid black;
+  border: 3px solid #161B25;
 }
 
 .inputs {
@@ -202,26 +193,26 @@ button {
   padding: 10px 25px;
   font-family: 'Lato', sans-serif;
   background-color: #7672f7;
-  border: 3px solid #000;
+  border: 3px solid #161B25;
   border-radius: 10px;
 }
 
-/* style landing page here */
+/* LANDING PAGE STYLE */
+
 .landingPage {
-  /* THIS IS JUST PLACEHOLDER */
   width: 80%;
   height: 50vh;
   position: sticky;
   top: 50px;
   right: 10%;
-  /* background-image: url("https://images.unsplash.com/photo-1472476443507-c7a5948772fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzc0Nzh8MHwxfHNlYXJjaHwxfHxrZXRjaHVwfGVufDB8fHx8MTYzNzk4NDUwMA&ixlib=rb-1.2.1&q=80&w=1080"); */
 }
+
 .landingScreen{ 
   background-size: cover;
   width: 100%;
   height: 50vh;
-  box-shadow: black 10px 10px; 
-  border: 3px solid black;
+  box-shadow: #161B25 10px 10px; 
+  border: 3px solid #161B25;
 }
 
 .previewButtons{ 
@@ -242,6 +233,11 @@ button {
   width: 180px;
 }
 
+.linkButton{
+  color: grey;
+  text-decoration: line-through;
+}
+
 .editButton {
   text-align: center;
   margin: 20px auto;
@@ -256,7 +252,7 @@ button {
   margin: 0 auto;
   width: 99%;
   height: 100vh;
-  border: 3px solid black;
+  border: 3px solid #161B25;
   background-size: cover; 
 }
 
@@ -302,7 +298,7 @@ button {
 .displayCodePage{
   width: 80%;
   background-color: white;
-  border: 3px solid black;
+  border: 3px solid #161B25;
   overflow: scroll;
   margin: 0 auto;
   padding: 10px 0px;
@@ -335,4 +331,174 @@ footer {
   background-color: #e7605c;
   text-align: center;
   padding: 10px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1200px) {
+  .fontSelection {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1163px) {
+  .mainSection{
+    flex-direction: column;
+  }
+  .landingPage{
+    width: 95%;
+    margin-top: 25px;
+  }
+  .fontSelection {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(200px - 6px);
+}
+}
+
+@media (max-width: 975px) {
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(175px - 6px);
+}
+}
+
+@media (max-width: 850px) {
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(150px - 6px);
+}
+}
+
+@media (max-width: 795px) {
+  .fontSelection {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(175px - 6px);
+}
+}
+
+@media (max-width: 746px) {
+  .imageContainer {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 675px) {
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(150px - 6px)
+}
+}
+
+@media (max-width: 641px) {
+  .previewPage h1 {
+    font-size: 5rem;
+  }
+  .socialIconsPreview{
+    width: 50%;
+  }
+}
+
+@media (max-width: 625px) {
+  .formInputs {
+    grid-template-columns: .75fr 2fr;
+  }
+  .fontSelection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .imageContainer {
+    width: 150px;
+    height: 150px;
+  }
+  select[name="photoSelection"] {
+    width: 50%;
+  }
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(200px - 6px)
+}
+}
+
+@media (max-width: 555px) {
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(175px - 6px)
+}
+}
+
+@media (max-width: 538px) {
+  .previewPage h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 524px) {
+  header h1 {
+    font-size: 50px;
+  }  
+}
+
+@media (max-width: 495px) {
+  .formInputs {
+    grid-template-columns: 1fr;
+  }
+  .fontSelection {
+    grid-template-columns: 1fr;
+  }
+  .imageDiv {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .imageContainer {
+    width: 200px;
+    height: 200px;
+  }
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(300px - 6px)
+}
+}
+
+@media (max-width: 442px) {
+  header h1 {
+    font-size: 40px;
+  }
+  .previewButtons{
+    padding: 0px;
+    display: block;
+  }
+  footer{
+    padding-top: 75px;
+  }
+}
+
+@media (max-width: 436px) {
+  .previewPage h1 {
+    font-size: 3rem;
+  }
+  .previewPage h2 {
+    font-size: 2.5rem;
+  }
+  .socialIconsPreview{
+    width: 75%;
+  }
+
+}
+
+@media (max-width: 408px) {
+  .landingScreen h1 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  header h1 {
+    font-size: 35px;
+  }
 }
