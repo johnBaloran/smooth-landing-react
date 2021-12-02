@@ -26,7 +26,7 @@ const FontSelection = ({ fontChangeHandler, checked, disabled, fontCheckboxHandl
       <ul className="fontSelection">
         {fonts.map((font, index) => {
           return (
-            <li onClick={fontChangeHandler}>
+            <li onClick={fontChangeHandler} key={index}>
               <input onChange={()=>fontCheckboxHandler(index)} type="checkbox" id={`font${index}`} value={font.fontStyle} checked={checked[index] || false} disabled={!checked[index] && disabled} required/>
               <label htmlFor={`font${index}`}>
                 <h3 style={{ fontFamily: `${font.fontStyle}` }}>{font.name}</h3>

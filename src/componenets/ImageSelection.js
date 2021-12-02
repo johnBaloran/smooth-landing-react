@@ -50,7 +50,7 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
         {imageCatalogue.map((image, index) => {
           
           return (
-            <li className="imageContainer" onClick={backgroundImageChangeHandler}>
+            <li className="imageContainer" onClick={backgroundImageChangeHandler} key={index}>
               <input
                 onChange={()=>imageCheckboxHandler(index)} checked={checked[index] || false} disabled={!checked[index] && disabled}
                 type="checkbox"
