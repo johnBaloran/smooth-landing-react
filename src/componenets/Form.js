@@ -103,18 +103,19 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
 
   const clearFormHandler = () => {
     const dbRef = firebase.database().ref("landingPage");
-    dbRef.child(userInput.id).update({
-    firstName: "",
-    lastName: "",
-    subtitle: "",
-    github: "",
-    linkedIn: "",
-    twitter: "",
-    fonts: "",
-    backgroundImage: "",
-    fontColor: "#161B25",
-    id: "",
-  });
+  //   dbRef.child(userInput.id).update({
+  //   firstName: "",
+  //   lastName: "",
+  //   subtitle: "",
+  //   github: "",
+  //   linkedIn: "",
+  //   twitter: "",
+  //   fonts: "",
+  //   backgroundImage: "",
+  //   fontColor: "#161B25",
+  //   id: "",
+  // });
+  console.log(userInput.id)
   }
 
   const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);

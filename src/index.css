@@ -197,6 +197,11 @@ button {
   border-radius: 10px;
 }
 
+.formButtons {
+   display: flex;
+   justify-content: space-evenly;
+}
+
 /* LANDING PAGE STYLE */
 
 .landingPage {
@@ -356,6 +361,10 @@ footer {
   input:focus + label h3{
   width: calc(200px - 6px);
 }
+  .imageDiv {
+    margin: auto;
+    gap: 20px;
+  }
 }
 
 @media (max-width: 975px) {
@@ -363,6 +372,12 @@ footer {
   input:focus + label h3{
   width: calc(175px - 6px);
 }
+}
+
+@media (max-width: 940px) {
+  .landingPage {
+    width: 93.5%;
+  } 
 }
 
 @media (max-width: 850px) {
@@ -379,10 +394,13 @@ footer {
   input:checked + label h3,
   input:focus + label h3{
   width: calc(175px - 6px);
-}
+  }
+  .landingPage {
+    width: 92%;
+  }
 }
 
-@media (max-width: 746px) {
+@media (max-width: 768px) {
   .imageContainer {
     width: 200px;
     height: 200px;
