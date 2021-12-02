@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FontSelection from "./FontSelection";
-
+import firebase from "../firebase";
 
 import ImageSelection from "./ImageSelection";
 
@@ -26,6 +26,22 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     fontColor: "#161b25",
   });
 
+  useEffect(() => {
+    // make a reference to our database
+    const dbRef = firebase.database().ref("landingPage");
+    // add event listener to watch for changes to our database
+    dbRef.on("value", (response) => {
+      // variable to store a new state
+      const data = response.val();
+      const newPage = [];
+      for (let property in data) {
+        newPage.push({ id: property, ...data[property] });
+      }
+      // update state with new state
+      setUserInput(newPage[0]);
+    });
+  }, []);
+
   // a submit handler that whenever form is submitted grabs the userInput object and puts it inside grabObject() from the app component
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +51,9 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     // function coming from App component
       grabObject(userInput);
       enableButton()
+      const dbRef = firebase.database().ref("landingPage");
+      console.log(dbRef.child(userInput.id));
+      dbRef.child(userInput.id).update(userInput);
   };
 
   // functions that grab each value from each input and collects it in the userInput object
@@ -80,6 +99,22 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
         [index]: !previousState.checked[index]
       }
     }))
+  }
+
+  const clearFormHandler = () => {
+    const dbRef = firebase.database().ref("landingPage");
+    dbRef.child(userInput.id).update({
+    firstName: "",
+    lastName: "",
+    subtitle: "",
+    github: "",
+    linkedIn: "",
+    twitter: "",
+    fonts: "",
+    backgroundImage: "",
+    fontColor: "#161B25",
+    id: "",
+  });
   }
 
   const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
@@ -158,6 +193,7 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
         <ImageSelection
         backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checkedTwo} disabled={disabledTwo} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}
         />
+        <button onClick={clearFormHandler} type="button">Clear Form</button>
         <button type="submit">Submit</button>
       </form>
   );
