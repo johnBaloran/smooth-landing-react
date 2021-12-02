@@ -1,5 +1,6 @@
 import React from 'react'
 
+// WE want the FOOTER COMPONENT to stay conssitent through out the app
 function Footer() {
     return (
         <footer>

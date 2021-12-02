@@ -4,6 +4,7 @@ import firebase from "../firebase";
 
 import ImageSelection from "./ImageSelection";
 
+// Function that will disable the rest of the checkboxes in the form if one check box is checked. This prevents the user from checking too many inputs 
 const checkboxValues = (values) => {
   const { checked } = values;
   const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
@@ -11,9 +12,12 @@ const checkboxValues = (values) => {
   return [checked, disabled]
 }
 
+// Form Function, destructuring the grabObject, socialIconHandler and enableButton functions in order to grab the values being passed into each function 
 const Form = ({ grabObject, socialIconHandler, enableButton }) => {
+  // Setting two seperate states for the font selection and image selection to a checked object
   const [fontCheckboxValues, setFontCheckboxValues] = useState({ checked: {} });
   const [imageCheckboxValues, setImageCheckboxValues] = useState({ checked: {} });
+  // setting state for the userInputs. The whole form is an object, and each input and value are a key-value pair. Initially an empty string. 
   const [userInput, setUserInput] = useState({
     firstName: "",
     lastName: "",
@@ -23,9 +27,11 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     twitter: "",
     fonts: "",
     backgroundImage: "",
+    // Setting initial color selection
     fontColor: "#161b25",
   });
 
+  // Grabbing firebase and pushing the userInputs to firebase to save their information so the form doesn't reload when the user Routes to a different page. 
   useEffect(() => {
     // make a reference to our database
     const dbRef = firebase.database().ref("landingPage");
@@ -33,12 +39,12 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     dbRef.on("value", (response) => {
       // variable to store a new state
       const data = response.val();
-      const newPage = [];
-      for (let property in data) {
-        newPage.push({ id: property, ...data[property] });
-      }
+      // console.log(data)
+      
+      
       // update state with new state
-      setUserInput(newPage[0]);
+      setUserInput(data);
+
     });
   }, []);
 
@@ -46,14 +52,11 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     socialIconHandler();
-    console.log("submitted");
-
-    // function coming from App component
-      grabObject(userInput);
+    // // function coming from App component
+    grabObject(userInput);
       enableButton()
       const dbRef = firebase.database().ref("landingPage");
-      console.log(dbRef.child(userInput.id));
-      dbRef.child(userInput.id).update(userInput);
+      dbRef.update(userInput);
   };
 
   // functions that grab each value from each input and collects it in the userInput object
@@ -84,6 +87,8 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
   const fontChangeHandler = (e) => {
     setUserInput({ ...userInput, fonts: e.target.value });
   };
+
+  // Functions for our checkboxs. 
   const fontCheckboxHandler = (index) => {
     setFontCheckboxValues(previousState => ({
       checked: {
@@ -101,21 +106,22 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     }))
   }
 
+  // Function to allow the user to clear form by removing the input information from firebase
   const clearFormHandler = () => {
     const dbRef = firebase.database().ref("landingPage");
-  //   dbRef.child(userInput.id).update({
-  //   firstName: "",
-  //   lastName: "",
-  //   subtitle: "",
-  //   github: "",
-  //   linkedIn: "",
-  //   twitter: "",
-  //   fonts: "",
-  //   backgroundImage: "",
-  //   fontColor: "#161B25",
-  //   id: "",
-  // });
-  console.log(userInput.id)
+      dbRef.update({
+      firstName: "",
+      lastName: "",
+      subtitle: "",
+      github: "",
+      linkedIn: "",
+      twitter: "",
+      fonts: "",
+      backgroundImage: "",
+      fontColor: "#161B25",
+      id: "",
+    });
+      console.log(userInput)
   }
 
   const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
@@ -188,7 +194,6 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
           required
           />
         </div>
-        {/* button can be deleted if we want to and just use enter to submit */}
         
       <FontSelection fontChangeHandler={fontChangeHandler} checked={checkedOne} disabled={disabledOne} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}/>
         <ImageSelection

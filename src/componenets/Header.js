@@ -1,3 +1,4 @@
+// Header Componenet. WE want the Header to stay consistent throughout the app
 const Header = () => {
     return (
         <header>

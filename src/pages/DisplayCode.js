@@ -14,7 +14,6 @@ const DisplayCode = ({ formAnswers }) => {
         backgroundImage,
         fontColor,
     } = formAnswers;
-    console.log(formAnswers);
     return (
         <div className="displayContainter">
             <section className="displayCodePage">
