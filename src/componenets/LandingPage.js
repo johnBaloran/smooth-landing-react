@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
-  console.log(formAnswers);
   // destructuring our object to make it easier for us to reference 
   const {
     firstName,
@@ -16,6 +15,7 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
     fontColor,
   } = formAnswers;
   // style up the landing page! add divs and move it around etc.
+  console.log(isSubmitted)
   return (
     <>
       <section className="landingPage">
@@ -47,7 +47,7 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
               </Link>
             </div>
             <div className="generateCode">
-              <Link to="/code" className={!isSubmitted && "linkButton"}>
+            <Link to={!isSubmitted ? "/main" : "/code"} className={!isSubmitted && "linkButton"}>
                 <p>Generate Code</p>
               </Link>
             </div>
