@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LandingPage = ({ formAnswers, icons }) => {
-  console.log(formAnswers);
   // destructuring our object to make it easier for us to reference 
   const {
     firstName,

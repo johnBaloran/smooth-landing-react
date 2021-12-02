@@ -18,7 +18,6 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
         per_page: 12,
       },
     }).then((results) => {
-      console.log(results.data.results);
       setImageCatalogue(results.data.results);
     });
   }, [imageSelection]);

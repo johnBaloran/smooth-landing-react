@@ -30,8 +30,6 @@ const Form = ({ grabObject, socialIconHandler }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     socialIconHandler();
-    console.log("submitted");
-
     // function coming from App component
       grabObject(userInput);
   };

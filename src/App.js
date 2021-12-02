@@ -43,8 +43,14 @@ function App() {
                 socialIconHandler={socialIconHandler}
               />}
             />
-            <Route path="/preview" element={<PreviewPage formAnswers={formAnswers} icons={socialIcons} /> }/>
-            <Route path="/code" element={<DisplayCode formAnswers={formAnswers}/>} />
+            <Route
+              path="/preview"
+              element={<PreviewPage formAnswers={formAnswers} icons={socialIcons} />}
+            />
+            <Route
+              path="/code"
+              element={<DisplayCode formAnswers={formAnswers} />}
+            />
           </Routes>
       </main>
       <Footer />
