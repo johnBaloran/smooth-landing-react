@@ -193,8 +193,10 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
         <ImageSelection
         backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checkedTwo} disabled={disabledTwo} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}
         />
-        <button onClick={clearFormHandler} type="button">Clear Form</button>
-        <button type="submit">Submit</button>
+        <div className="formButtons">
+          <button onClick={clearFormHandler} type="button">Clear Form</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
   );
 };
