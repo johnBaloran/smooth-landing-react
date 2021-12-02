@@ -232,6 +232,11 @@ button {
   width: 180px;
 }
 
+.linkButton{
+  color: grey;
+  text-decoration: line-through;
+}
+
 .editButton {
   text-align: center;
   margin: 20px auto;

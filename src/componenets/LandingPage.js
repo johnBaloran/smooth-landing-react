@@ -1,7 +1,7 @@
-import React from "react"; 
+import React from "react";
 import { Link } from "react-router-dom";
 
-const LandingPage = ({ formAnswers, icons }) => {
+const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
   console.log(formAnswers);
   // destructuring our object to make it easier for us to reference 
   const {
@@ -36,21 +36,22 @@ const LandingPage = ({ formAnswers, icons }) => {
               <a href={twitter}><i class="fab fa-twitter-square"></i></a>
               <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
               <a href={github}><i class="fab fa-github-square"></i></a>
-            </div> 
-          ) : "" }
+            </div>
+          ) : ""}
         </div>
-        <section className="previewButtons">
-          <div className="preview">
-            <Link to="/preview">
-              <p>Preview</p>
-            </Link>
-          </div>
-          <div className="generateCode">
-            <Link to="/code">
-              <p>Generate Code</p>  
-            </Link>
-          </div>
-        </section>
+    
+          <section className="previewButtons">
+            <div className="preview">
+              <Link to={!isSubmitted ? "/main" : "/preview"} className={!isSubmitted && "linkButton"}>
+                <p>Preview</p>
+              </Link>
+            </div>
+            <div className="generateCode">
+              <Link to="/code" className={!isSubmitted && "linkButton"}>
+                <p>Generate Code</p>
+              </Link>
+            </div>
+          </section>
       </section>
     </>
   );

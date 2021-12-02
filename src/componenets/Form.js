@@ -11,7 +11,7 @@ const checkboxValues = (values) => {
   return [checked, disabled]
 }
 
-const Form = ({ grabObject, socialIconHandler }) => {
+const Form = ({ grabObject, socialIconHandler, enableButton }) => {
   const [fontCheckboxValues, setFontCheckboxValues] = useState({ checked: {} });
   const [imageCheckboxValues, setImageCheckboxValues] = useState({ checked: {} });
   const [userInput, setUserInput] = useState({
@@ -34,6 +34,7 @@ const Form = ({ grabObject, socialIconHandler }) => {
 
     // function coming from App component
       grabObject(userInput);
+      enableButton()
   };
 
   // functions that grab each value from each input and collects it in the userInput object
@@ -83,7 +84,6 @@ const Form = ({ grabObject, socialIconHandler }) => {
 
   const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
   const[checkedTwo, disabledTwo] = checkboxValues(imageCheckboxValues);
-
   
   return (
       <form type="submit" onSubmit={handleSubmit}>
