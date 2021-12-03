@@ -22,9 +22,17 @@ const MainSection = ({
     return (
         <div className="mainSection wrapper">
             {/* Form Componenet takes the inputs from the form, sets state of social icons and the state of the preview buttons */}
-            <Form grabObject={grabObject} socialIconHandler={socialIconHandler} enableButton={enableButton} />
+            <Form
+                grabObject={grabObject}
+                socialIconHandler={socialIconHandler}
+                enableButton={enableButton}
+            />
             {/* LandingPage Componenet grabs the form inputs, the icons and the state of the form submission */}
-            <LandingPage formAnswers={formAnswers} icons={icons} isSubmitted={isSubmitted} /> 
+            <LandingPage
+                formAnswers={formAnswers}
+                icons={icons}
+                isSubmitted={isSubmitted}
+            />
         </div>
     )
 }

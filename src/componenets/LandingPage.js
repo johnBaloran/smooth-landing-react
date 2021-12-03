@@ -15,11 +15,11 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
     fontColor,
   } = formAnswers;
   // style up the landing page! add divs and move it around etc.
-  console.log(isSubmitted)
   return (
     <>
       <section className="landingPage">
         <div
+          // passing in the formAnswers to grab the values in order to style the landingPage in the MainSection
           className="landingScreen"
           style={{
             backgroundImage: `url(${backgroundImage})`,
@@ -40,18 +40,25 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
           ) : ""}
         </div>
     
-          <section className="previewButtons">
-            <div className="preview">
-              <Link to={!isSubmitted ? "/main" : "/preview"} className={!isSubmitted && "linkButton"}>
-                <p>Preview</p>
-              </Link>
-            </div>
-            <div className="generateCode">
-            <Link to={!isSubmitted ? "/main" : "/code"} className={!isSubmitted && "linkButton"}>
-                <p>Generate Code</p>
-              </Link>
-            </div>
-          </section>
+        <section className="previewButtons">
+          <div className="preview">
+          {/* If the form is submitted then route to the preview/code generation page, and if not then stay on the main page */}
+            <Link
+              to={!isSubmitted ? "/main" : "/preview"}
+              className={!isSubmitted && "linkButton"}
+            >
+              <p>Preview</p>
+            </Link>
+          </div>
+          <div className="generateCode">
+            <Link
+              to={!isSubmitted ? "/main" : "/code"}
+              className={!isSubmitted && "linkButton"}
+            >
+              <p>Generate Code</p>
+            </Link>
+          </div>
+        </section>
       </section>
     </>
   );

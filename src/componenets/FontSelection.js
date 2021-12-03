@@ -1,6 +1,7 @@
 import React from "react";
 
 // you can put inside or outside component function, more readable outside
+// the fonts the use is able to select 
 const fonts = [
   { name: "Roboto", fontStyle: "Roboto" },
   { name: "Staatliches", fontStyle: "Staatliches" },
@@ -15,9 +16,9 @@ const fonts = [
   { name: "Playfair Display", fontStyle: "Playfair Display" },
   { name: "Satisfy", fontStyle: "Satisfy" },
 
-
 ];
 
+// passing in the destructured that applies to the font selection checkboxes 
 const FontSelection = ({ fontChangeHandler, checked, disabled, fontCheckboxHandler }) => {
   
   return (
@@ -26,8 +27,19 @@ const FontSelection = ({ fontChangeHandler, checked, disabled, fontCheckboxHandl
       <ul className="fontSelection">
         {fonts.map((font, index) => {
           return (
-            <li onClick={fontChangeHandler} key={index}>
-              <input onChange={()=>fontCheckboxHandler(index)} type="checkbox" id={`font${index}`} value={font.fontStyle} checked={checked[index] || false} disabled={!checked[index] && disabled} required/>
+            <li
+              onClick={fontChangeHandler}
+              key={index}
+            >
+              <input
+                onChange={() => fontCheckboxHandler(index)}
+                type="checkbox"
+                id={`font${index}`}
+                value={font.fontStyle}
+                checked={checked[index] || false}
+                disabled={!checked[index] && disabled}
+                required
+              />
               <label htmlFor={`font${index}`}>
                 <h3 style={{ fontFamily: `${font.fontStyle}` }}>{font.name}</h3>
               </label>

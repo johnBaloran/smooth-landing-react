@@ -44,17 +44,24 @@ function App() {
           {/* Passing props to the MainSection componenet */}
           <Route
             path="/main"
-            element={<MainSection
-              grabObject={grabObject}
-              formAnswers={formAnswers}
-              icons={socialIcons}
-              socialIconHandler={socialIconHandler}
-            />}
+            element={
+              <MainSection
+                grabObject={grabObject}
+                formAnswers={formAnswers}
+                icons={socialIcons}
+                socialIconHandler={socialIconHandler}
+              />
+            }
           />
           {/* ROute for the landing page preview. Pass in props from the user inputs and social icons so the appear on the preview  */}
           <Route
             path="/preview"
-            element={<PreviewPage formAnswers={formAnswers} icons={socialIcons} />}
+            element={
+              <PreviewPage
+                formAnswers={formAnswers}
+                icons={socialIcons}
+              />
+            }
           />
           {/* Route to where the user can copy and paste code. Need to pass props from the user inputs from the form so the values show up in the code. */}
           <Route
