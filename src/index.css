@@ -138,8 +138,8 @@ form {
   padding: 10px 0px;
 }
 
-.fontSelection h3 {
-  padding: 10px;
+.fontSelection li {
+  padding: 20px 0px;
 }
 
 input[type="checkbox"] {
@@ -462,12 +462,22 @@ footer {
   }  
 }
 
-@media (max-width: 495px) {
+@media (max-width: 480px) {
+  .wrapper {
+    width: 95%;
+  }
+  form {
+    margin: auto;
+  }
   .formInputs {
     grid-template-columns: 1fr;
   }
   .fontSelection {
     grid-template-columns: 1fr;
+    padding: 25px 0px 50px 0px;
+  }
+  .fontSelection h3 {
+    padding: 10px;
   }
   .imageDiv {
     display: grid;
@@ -479,8 +489,12 @@ footer {
   }
   input:checked + label h3,
   input:focus + label h3{
-  width: calc(300px - 6px)
+  width: calc(350px - 6px)
 }
+  .landingPage {
+    margin: 10px auto;
+    width: 90%;
+  }
 }
 
 @media (max-width: 442px) {
@@ -518,5 +532,15 @@ footer {
 @media (max-width: 360px) {
   header h1 {
     font-size: 35px;
+  }
+}
+
+@media (max-width: 320px) {
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(240px - 6px)
+  }
+  .socialIcons{
+    width: 70%;
   }
 }
