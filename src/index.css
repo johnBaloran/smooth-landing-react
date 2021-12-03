@@ -138,8 +138,8 @@ form {
   padding: 10px 0px;
 }
 
-.fontSelection h3 {
-  padding: 10px;
+.fontSelection li {
+  padding: 20px 0px;
 }
 
 input[type="checkbox"] {
@@ -195,6 +195,11 @@ button {
   background-color: #7672f7;
   border: 3px solid #161B25;
   border-radius: 10px;
+}
+
+.formButtons {
+   display: flex;
+   justify-content: space-evenly;
 }
 
 /* LANDING PAGE STYLE */
@@ -356,6 +361,10 @@ footer {
   input:focus + label h3{
   width: calc(200px - 6px);
 }
+  .imageDiv {
+    margin: auto;
+    gap: 20px;
+  }
 }
 
 @media (max-width: 975px) {
@@ -363,6 +372,12 @@ footer {
   input:focus + label h3{
   width: calc(175px - 6px);
 }
+}
+
+@media (max-width: 940px) {
+  .landingPage {
+    width: 93.5%;
+  } 
 }
 
 @media (max-width: 850px) {
@@ -379,10 +394,13 @@ footer {
   input:checked + label h3,
   input:focus + label h3{
   width: calc(175px - 6px);
-}
+  }
+  .landingPage {
+    width: 92%;
+  }
 }
 
-@media (max-width: 746px) {
+@media (max-width: 768px) {
   .imageContainer {
     width: 200px;
     height: 200px;
@@ -444,12 +462,22 @@ footer {
   }  
 }
 
-@media (max-width: 495px) {
+@media (max-width: 480px) {
+  .wrapper {
+    width: 95%;
+  }
+  form {
+    margin: auto;
+  }
   .formInputs {
     grid-template-columns: 1fr;
   }
   .fontSelection {
     grid-template-columns: 1fr;
+    padding: 25px 0px 50px 0px;
+  }
+  .fontSelection h3 {
+    padding: 10px;
   }
   .imageDiv {
     display: grid;
@@ -461,8 +489,12 @@ footer {
   }
   input:checked + label h3,
   input:focus + label h3{
-  width: calc(300px - 6px)
+  width: calc(350px - 6px)
 }
+  .landingPage {
+    margin: 10px auto;
+    width: 90%;
+  }
 }
 
 @media (max-width: 442px) {
@@ -500,5 +532,15 @@ footer {
 @media (max-width: 360px) {
   header h1 {
     font-size: 35px;
+  }
+}
+
+@media (max-width: 320px) {
+  input:checked + label h3,
+  input:focus + label h3{
+  width: calc(240px - 6px)
+  }
+  .socialIcons{
+    width: 70%;
   }
 }

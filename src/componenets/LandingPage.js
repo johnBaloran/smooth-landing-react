@@ -33,9 +33,9 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
           <h2>{subtitle}</h2>
           {icons ? (
             <div className="socialIcons">
-              <a href={twitter}><i class="fab fa-twitter-square"></i></a>
-              <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
-              <a href={github}><i class="fab fa-github-square"></i></a>
+              <a href={twitter}><i className="fab fa-twitter-square"></i></a>
+              <a href={linkedIn}><i className="fab fa-linkedin"></i></a>
+              <a href={github}><i className="fab fa-github-square"></i></a>
             </div>
           ) : ""}
         </div>
