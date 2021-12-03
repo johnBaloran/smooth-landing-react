@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// passing in the props that deal with the Image selection checkboxes 
 const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, imageCheckboxHandler }) => {
+  // setting state for the API data
   const [imageCatalogue, setImageCatalogue] = useState([]);
+  // setting state for the images returned from the API call based on the select in the form
   const [imageSelection, setImageSelection] = useState({});
 
+  // API CALL 
   useEffect(() => {
     const apikey = "duinyirbtoWLiyWqJ47c46rMrUwPtTmIR87nVX0fobU";
     axios({
@@ -22,6 +26,7 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
     });
   }, [imageSelection]);
 
+  // grabbing the value of the select and setting that state so the param search in the API matches the ImageSelection
   const selectionHandler = (e) => {
     setImageSelection(e.target.value);
   };
@@ -50,9 +55,15 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
         {imageCatalogue.map((image, index) => {
           
           return (
-            <li className="imageContainer" onClick={backgroundImageChangeHandler} key={index}>
+            <li
+              className="imageContainer"
+              onClick={backgroundImageChangeHandler}
+              key={index}
+            >
               <input
-                onChange={()=>imageCheckboxHandler(index)} checked={checked[index] || false} disabled={!checked[index] && disabled}
+                onChange={() => imageCheckboxHandler(index)}
+                checked={checked[index] || false}
+                disabled={!checked[index] && disabled}
                 type="checkbox"
                 id={`image${index}`}
                 value={image.urls.regular}

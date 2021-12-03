@@ -54,9 +54,9 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     socialIconHandler();
     // // function coming from App component
     grabObject(userInput);
-      enableButton()
-      const dbRef = firebase.database().ref("landingPage");
-      dbRef.update(userInput);
+    enableButton()
+    const dbRef = firebase.database().ref("landingPage");
+    dbRef.update(userInput);
   };
 
   // functions that grab each value from each input and collects it in the userInput object
@@ -120,90 +120,103 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
       backgroundImage: "",
       fontColor: "#161B25",
       id: "",
-    });
-      console.log(userInput)
+      });
   }
 
   const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
   const[checkedTwo, disabledTwo] = checkboxValues(imageCheckboxValues);
   
   return (
-      <form type="submit" onSubmit={handleSubmit}>
-        <div className="formInputs">
-          <label htmlFor="userFirstName">First Name</label>
-          <input
-            type="text"
-            id="firstName"
-            name="userName"
-            onChange={firstNameChangeHandler}
-            value={userInput.firstName}
-            required
-          />
-          <label htmlFor="userLastName">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            name="userLastName"
-            onChange={lastNameChangeHandler}
-            value={userInput.lastName}
-            required
-          />
-          <label htmlFor="subtitle">Heading</label>
-          <input
-            type="text"
-            id="subtitle"
-            name="subtitle"
-            onChange={subtitleChangeHandler}
-            value={userInput.subtitle}
-            required
-          />
-          <label htmlFor="github">Github</label>
-          <input
-            type="url"
-            id="github"
-            name="github"
-            onChange={githubChangeHandler}
-            value={userInput.github}
-            required
-          />
-          <label htmlFor="linkedIn">LinkedIn</label>
-          <input
-            type="url"
-            id="linkedIn"
-            name="linkedIn"
-            onChange={linkedInChangeHandler}
-            value={userInput.linkedIn}
-            required
-          />
-          <label htmlFor="twitter">Twitter</label>
-          <input
-            type="url"
-            id="twitter"
-            name="twitter"
-            onChange={twitterChangeHandler}
-            value={userInput.twitter}
-            required
-          />
-          <label htmlFor="fontColor">Font Color</label>
-          <input 
-          type="color"
-          id="fontColor"
-          name="fontColor"
-          onChange={fontColorHandler}
-          value={userInput.fontColor}
+    // this is our form. Essentially we want to pass in every event change handler for each input. 
+    // we also  want to set the value to be the property inside of the userInput object. 
+    <form type="submit" onSubmit={handleSubmit}>
+      <div className="formInputs">
+        <label htmlFor="userFirstName">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          name="userName"
+          onChange={firstNameChangeHandler}
+          value={userInput.firstName}
           required
-          />
-        </div>
-        
-      <FontSelection fontChangeHandler={fontChangeHandler} checked={checkedOne} disabled={disabledOne} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}/>
-        <ImageSelection
-        backgroundImageChangeHandler={backgroundImageChangeHandler} checked={checkedTwo} disabled={disabledTwo} fontCheckboxHandler={fontCheckboxHandler} imageCheckboxHandler={imageCheckboxHandler}
         />
-        <div className="formButtons">
-          <button onClick={clearFormHandler} type="button">Clear Form</button>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+        <label htmlFor="userLastName">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          name="userLastName"
+          onChange={lastNameChangeHandler}
+          value={userInput.lastName}
+          required
+        />
+        <label htmlFor="subtitle">Heading</label>
+        <input
+          type="text"
+          id="subtitle"
+          name="subtitle"
+          onChange={subtitleChangeHandler}
+          value={userInput.subtitle}
+          required
+        />
+        <label htmlFor="github">Github</label>
+        <input
+          type="url"
+          id="github"
+          name="github"
+          onChange={githubChangeHandler}
+          value={userInput.github}
+          required
+        />
+        <label htmlFor="linkedIn">LinkedIn</label>
+        <input
+          type="url"
+          id="linkedIn"
+          name="linkedIn"
+          onChange={linkedInChangeHandler}
+          value={userInput.linkedIn}
+          required
+        />
+        <label htmlFor="twitter">Twitter</label>
+        <input
+          type="url"
+          id="twitter"
+          name="twitter"
+          onChange={twitterChangeHandler}
+          value={userInput.twitter}
+          required
+        />
+        <label htmlFor="fontColor">Font Color</label>
+        <input 
+        type="color"
+        id="fontColor"
+        name="fontColor"
+        onChange={fontColorHandler}
+        value={userInput.fontColor}
+        required
+        />
+      </div>
+        
+      {/* for each checkbox section (component) we want to track when the user changes their selection, make sure they are only able to select one option and disable the rest */}
+      <FontSelection
+        fontChangeHandler={fontChangeHandler}
+        checked={checkedOne}
+        disabled={disabledOne}
+        fontCheckboxHandler={fontCheckboxHandler}
+        imageCheckboxHandler={imageCheckboxHandler}
+      />
+      <ImageSelection
+        backgroundImageChangeHandler={backgroundImageChangeHandler}
+        checked={checkedTwo}
+        disabled={disabledTwo}
+        fontCheckboxHandler={fontCheckboxHandler}
+        imageCheckboxHandler={imageCheckboxHandler}
+      />
+      <div className="formButtons">
+        {/* when the user click the clear form button activate the clearFormHandler */}
+        <button onClick={clearFormHandler} type="button">Clear Form</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
   );
 };
 

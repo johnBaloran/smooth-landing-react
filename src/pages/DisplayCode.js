@@ -17,6 +17,7 @@ const DisplayCode = ({ formAnswers }) => {
     return (
         <div className="displayContainter">
             <section className="displayCodePage">
+                {/* THE CODE WE WANT TO PRESENT TO THE USER TO CUT AND PASTE IN THEIR CODE EDITOR!  */}
                 <pre>
                     {`
                 <!DOCTYPE html>

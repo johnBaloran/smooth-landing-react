@@ -15,11 +15,11 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
     fontColor,
   } = formAnswers;
   // style up the landing page! add divs and move it around etc.
-  console.log(isSubmitted)
   return (
     <>
       <section className="landingPage">
         <div
+          // passing in the formAnswers to grab the values in order to style the landingPage in the MainSection
           className="landingScreen"
           style={{
             backgroundImage: `url(${backgroundImage})`,
@@ -33,25 +33,32 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
           <h2>{subtitle}</h2>
           {icons ? (
             <div className="socialIcons">
-              <a href={twitter}><i class="fab fa-twitter-square"></i></a>
-              <a href={linkedIn}><i class="fab fa-linkedin"></i></a>
-              <a href={github}><i class="fab fa-github-square"></i></a>
+              <a href={twitter}><i className="fab fa-twitter-square"></i></a>
+              <a href={linkedIn}><i className="fab fa-linkedin"></i></a>
+              <a href={github}><i className="fab fa-github-square"></i></a>
             </div>
           ) : ""}
         </div>
     
-          <section className="previewButtons">
-            <div className="preview">
-              <Link to={!isSubmitted ? "/main" : "/preview"} className={!isSubmitted && "linkButton"}>
-                <p>Preview</p>
-              </Link>
-            </div>
-            <div className="generateCode">
-            <Link to={!isSubmitted ? "/main" : "/code"} className={!isSubmitted && "linkButton"}>
-                <p>Generate Code</p>
-              </Link>
-            </div>
-          </section>
+        <section className="previewButtons">
+          <div className="preview">
+          {/* If the form is submitted then route to the preview/code generation page, and if not then stay on the main page */}
+            <Link
+              to={!isSubmitted ? "/main" : "/preview"}
+              className={!isSubmitted && "linkButton"}
+            >
+              <p>Preview</p>
+            </Link>
+          </div>
+          <div className="generateCode">
+            <Link
+              to={!isSubmitted ? "/main" : "/code"}
+              className={!isSubmitted && "linkButton"}
+            >
+              <p>Generate Code</p>
+            </Link>
+          </div>
+        </section>
       </section>
     </>
   );
