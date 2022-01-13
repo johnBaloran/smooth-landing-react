@@ -1,8 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Context from "../context/context";
 
 const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
-  // destructuring our object to make it easier for us to reference 
+  const ctx = useContext(Context);
+  // destructuring our object to make it easier for us to reference
   const {
     firstName,
     lastName,
@@ -13,8 +15,8 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
     fonts,
     backgroundImage,
     fontColor,
-  } = formAnswers;
-  // style up the landing page! add divs and move it around etc.
+  } = ctx.formAnswers;
+
   return (
     <>
       <section className="landingPage">
@@ -24,7 +26,7 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
           style={{
             backgroundImage: `url(${backgroundImage})`,
             fontFamily: `${fonts}`,
-            color: fontColor
+            color: fontColor,
           }}
         >
           <h1>
@@ -33,27 +35,35 @@ const LandingPage = ({ formAnswers, icons, isSubmitted }) => {
           <h2>{subtitle}</h2>
           {icons ? (
             <div className="socialIcons">
-              <a href={twitter}><i className="fab fa-twitter-square"></i></a>
-              <a href={linkedIn}><i className="fab fa-linkedin"></i></a>
-              <a href={github}><i className="fab fa-github-square"></i></a>
+              <a href={twitter}>
+                <i className="fab fa-twitter-square"></i>
+              </a>
+              <a href={linkedIn}>
+                <i className="fab fa-linkedin"></i>
+              </a>
+              <a href={github}>
+                <i className="fab fa-github-square"></i>
+              </a>
             </div>
-          ) : ""}
+          ) : (
+            ""
+          )}
         </div>
-    
+
         <section className="previewButtons">
           <div className="preview">
-          {/* If the form is submitted then route to the preview/code generation page, and if not then stay on the main page */}
+            {/* If the form is submitted then route to the preview/code generation page, and if not then stay on the main page */}
             <Link
-              to={!isSubmitted ? "/main" : "/preview"}
-              className={!isSubmitted && "linkButton"}
+              to={!ctx.isSubmitted ? "/main" : "/preview"}
+              className={!ctx.isSubmitted && "linkButton"}
             >
               <p>Preview</p>
             </Link>
           </div>
           <div className="generateCode">
             <Link
-              to={!isSubmitted ? "/main" : "/code"}
-              className={!isSubmitted && "linkButton"}
+              to={!ctx.isSubmitted ? "/main" : "/code"}
+              className={!ctx.isSubmitted && "linkButton"}
             >
               <p>Generate Code</p>
             </Link>

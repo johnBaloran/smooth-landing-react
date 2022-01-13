@@ -1,23 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import FontSelection from "./FontSelection";
 import firebase from "../firebase";
 
 import ImageSelection from "./ImageSelection";
+import Context from "../context/context";
 
-// Function that will disable the rest of the checkboxes in the form if one check box is checked. This prevents the user from checking too many inputs 
+// Function that will disable the rest of the checkboxes in the form if one check box is checked. This prevents the user from checking too many inputs
 const checkboxValues = (values) => {
   const { checked } = values;
-  const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
+  const checkedCount = Object.keys(checked).filter(
+    (key) => checked[key]
+  ).length;
   const disabled = checkedCount === 1;
-  return [checked, disabled]
-}
+  return [checked, disabled];
+};
 
-// Form Function, destructuring the grabObject, socialIconHandler and enableButton functions in order to grab the values being passed into each function 
-const Form = ({ grabObject, socialIconHandler, enableButton }) => {
+// Form Function, destructuring the grabObject, socialIconHandler function in order to grab the values being passed into each function
+const Form = ({ socialIconHandler }) => {
+  const ctx = useContext(Context);
+
   // Setting two seperate states for the font selection and image selection to a checked object
   const [fontCheckboxValues, setFontCheckboxValues] = useState({ checked: {} });
-  const [imageCheckboxValues, setImageCheckboxValues] = useState({ checked: {} });
-  // setting state for the userInputs. The whole form is an object, and each input and value are a key-value pair. Initially an empty string. 
+  const [imageCheckboxValues, setImageCheckboxValues] = useState({
+    checked: {},
+  });
+  // setting state for the userInputs. The whole form is an object, and each input and value are a key-value pair. Initially an empty string.
   const [userInput, setUserInput] = useState({
     firstName: "",
     lastName: "",
@@ -31,7 +38,7 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     fontColor: "#161b25",
   });
 
-  // Grabbing firebase and pushing the userInputs to firebase to save their information so the form doesn't reload when the user Routes to a different page. 
+  // Grabbing firebase and pushing the userInputs to firebase to save their information so the form doesn't reload when the user Routes to a different page.
   useEffect(() => {
     // make a reference to our database
     const dbRef = firebase.database().ref("landingPage");
@@ -39,12 +46,9 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     dbRef.on("value", (response) => {
       // variable to store a new state
       const data = response.val();
-      // console.log(data)
-      
-      
+
       // update state with new state
       setUserInput(data);
-
     });
   }, []);
 
@@ -52,9 +56,9 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     socialIconHandler();
-    // // function coming from App component
-    grabObject(userInput);
-    enableButton()
+    // // function coming from App component // prop drill
+    ctx.grabObject(userInput);
+    ctx.enableButton();
     const dbRef = firebase.database().ref("landingPage");
     dbRef.update(userInput);
   };
@@ -80,7 +84,7 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
   };
   const fontColorHandler = (e) => {
     setUserInput({ ...userInput, fontColor: e.target.value });
-  }
+  };
   const backgroundImageChangeHandler = (e) => {
     setUserInput({ ...userInput, backgroundImage: e.target.value });
   };
@@ -88,28 +92,28 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
     setUserInput({ ...userInput, fonts: e.target.value });
   };
 
-  // Functions for our checkboxs. 
+  // Functions for our checkboxs.
   const fontCheckboxHandler = (index) => {
-    setFontCheckboxValues(previousState => ({
+    setFontCheckboxValues((previousState) => ({
       checked: {
         ...previousState.checked,
-        [index]: !previousState.checked[index]
-      }
-    })) 
-  }
+        [index]: !previousState.checked[index],
+      },
+    }));
+  };
   const imageCheckboxHandler = (index) => {
-    setImageCheckboxValues(previousState => ({
+    setImageCheckboxValues((previousState) => ({
       checked: {
         ...previousState.checked,
-        [index]: !previousState.checked[index]
-      }
-    }))
-  }
+        [index]: !previousState.checked[index],
+      },
+    }));
+  };
 
   // Function to allow the user to clear form by removing the input information from firebase
   const clearFormHandler = () => {
     const dbRef = firebase.database().ref("landingPage");
-      dbRef.update({
+    dbRef.update({
       firstName: "",
       lastName: "",
       subtitle: "",
@@ -120,15 +124,15 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
       backgroundImage: "",
       fontColor: "#161B25",
       id: "",
-      });
-  }
+    });
+  };
 
-  const[checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
-  const[checkedTwo, disabledTwo] = checkboxValues(imageCheckboxValues);
-  
+  const [checkedOne, disabledOne] = checkboxValues(fontCheckboxValues);
+  const [checkedTwo, disabledTwo] = checkboxValues(imageCheckboxValues);
+
   return (
-    // this is our form. Essentially we want to pass in every event change handler for each input. 
-    // we also  want to set the value to be the property inside of the userInput object. 
+    // this is our form. Essentially we want to pass in every event change handler for each input.
+    // we also  want to set the value to be the property inside of the userInput object.
     <form type="submit" onSubmit={handleSubmit}>
       <div className="formInputs">
         <label htmlFor="userFirstName">First Name</label>
@@ -186,16 +190,16 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
           required
         />
         <label htmlFor="fontColor">Font Color</label>
-        <input 
-        type="color"
-        id="fontColor"
-        name="fontColor"
-        onChange={fontColorHandler}
-        value={userInput.fontColor}
-        required
+        <input
+          type="color"
+          id="fontColor"
+          name="fontColor"
+          onChange={fontColorHandler}
+          value={userInput.fontColor}
+          required
         />
       </div>
-        
+
       {/* for each checkbox section (component) we want to track when the user changes their selection, make sure they are only able to select one option and disable the rest */}
       <FontSelection
         fontChangeHandler={fontChangeHandler}
@@ -213,7 +217,9 @@ const Form = ({ grabObject, socialIconHandler, enableButton }) => {
       />
       <div className="formButtons">
         {/* when the user click the clear form button activate the clearFormHandler */}
-        <button onClick={clearFormHandler} type="button">Clear Form</button>
+        <button onClick={clearFormHandler} type="button">
+          Clear Form
+        </button>
         <button type="submit">Submit</button>
       </div>
     </form>

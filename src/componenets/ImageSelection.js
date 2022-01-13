@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// passing in the props that deal with the Image selection checkboxes 
-const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, imageCheckboxHandler }) => {
+// passing in the props that deal with the Image selection checkboxes
+const ImageSelection = ({
+  backgroundImageChangeHandler,
+  checked,
+  disabled,
+  imageCheckboxHandler,
+}) => {
   // setting state for the API data
   const [imageCatalogue, setImageCatalogue] = useState([]);
   // setting state for the images returned from the API call based on the select in the form
   const [imageSelection, setImageSelection] = useState({});
 
-  // API CALL 
+  // API CALL
   useEffect(() => {
     const apikey = "duinyirbtoWLiyWqJ47c46rMrUwPtTmIR87nVX0fobU";
     axios({
@@ -17,7 +22,7 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
       responseType: "json",
       params: {
         query: imageSelection,
-        orientation: 'landscape',
+        orientation: "landscape",
         client_id: apikey,
         per_page: 12,
       },
@@ -34,7 +39,9 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
   return (
     <>
       <h2>Choose your Background Image</h2>
-      <label className="backgroundLabel">Select a Category for your Background Image</label>
+      <label className="backgroundLabel">
+        Select a Category for your Background Image
+      </label>
       <select
         id="photoSelection"
         name="photoSelection"
@@ -53,7 +60,6 @@ const ImageSelection = ({ backgroundImageChangeHandler, checked, disabled, image
 
       <ul className="imageDiv">
         {imageCatalogue.map((image, index) => {
-          
           return (
             <li
               className="imageContainer"

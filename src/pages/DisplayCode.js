@@ -1,25 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import Context from "../context/context";
 
 const DisplayCode = ({ formAnswers }) => {
-
-    const {
-        firstName,
-        lastName,
-        subtitle,
-        twitter,
-        linkedIn,
-        github,
-        fonts,
-        backgroundImage,
-        fontColor,
-    } = formAnswers;
-    return (
-        <div className="displayContainter">
-            <section className="displayCodePage">
-                {/* THE CODE WE WANT TO PRESENT TO THE USER TO CUT AND PASTE IN THEIR CODE EDITOR!  */}
-                <pre>
-                    {`
+  const ctx = useContext(Context);
+  const {
+    firstName,
+    lastName,
+    subtitle,
+    twitter,
+    linkedIn,
+    github,
+    fonts,
+    backgroundImage,
+    fontColor,
+  } = ctx.formAnswers;
+  return (
+    <div className="displayContainter">
+      <section className="displayCodePage">
+        {/* THE CODE WE WANT TO PRESENT TO THE USER TO CUT AND PASTE IN THEIR CODE EDITOR!  */}
+        <pre>
+          {`
                 <!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -69,13 +70,13 @@ const DisplayCode = ({ formAnswers }) => {
                 </body>
                 </html>
                 `}
-                </pre>
-            </section>
-            <Link to="/main">
-                <p className="editButton">Edit</p>
-            </Link>
-        </div>
-    )
-}
+        </pre>
+      </section>
+      <Link to="/main">
+        <p className="editButton">Edit</p>
+      </Link>
+    </div>
+  );
+};
 
-export default DisplayCode
+export default DisplayCode;
