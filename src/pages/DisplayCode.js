@@ -31,6 +31,17 @@ const DisplayCode = ({ formAnswers }) => {
                     <title>Document</title>
                     <style>
                         @import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Alfa+Slab+One&family=Architects+Daughter&family=Bangers&family=Comic+Neue&family=Creepster&family=Epilogue&family=Noto+Serif+Display&family=Playfair+Display&family=Roboto&family=Satisfy&family=Staatliches&display&family=Fjalla+One&display&family=Lato&display=swap');
+
+                        * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        }
+            
+                        html{
+                        font-size: 16px;
+                        }
+
                         .previewPage{
                             background-image: url(${backgroundImage});
                             background-size: cover;
@@ -42,17 +53,46 @@ const DisplayCode = ({ formAnswers }) => {
                             height: 100vh;
                             color: ${fontColor};
                         }
+                        
                         .previewPage h1{
                             padding: 10px;
                             font-size: 6rem;
                         }
+                        
                         .previewPage h2{
                             font-size: 4rem;
                         }
+                       
                         .previewPage p{
                             padding: 10px 0px;
                             font-size: 2rem;
                         }
+                        
+                        i{
+                         font-size: 3.125rem;
+                         padding: 25px 20px;
+                         color: ${fontColor};
+
+                        }
+
+                        @media (max-width: 1020px) {
+                            html {
+                                font-size: 14px;
+                            }
+                        }
+
+                        @media (max-width: 750px) {
+                            html {
+                                font-size: 12px;
+                            }
+                        }
+
+                        @media (max-width: 450px) {
+                            html {
+                                font-size: 9px;
+                            }
+                        }
+
 
                     </style>
                 </head>
